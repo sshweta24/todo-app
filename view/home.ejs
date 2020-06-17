@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head><title>TODO</title>
+       <!--- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
+</head>
+    <body><center>
+        <h1>TODO App</h1>
+       
+            <div class="container-fluid"><textarea placeholder="DESCRIPTION"></textarea> </div>
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6"><div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose category
+                    <span class="caret"></span></button> 
+                    <ul class="dropdown-menu">
+                      <li><a href="#">personal</a></li>
+                      <li><a href="#">work</a></a></li>
+                      <li><a href="#">cleaning</a></li>
+                    </ul>
+                  </div></div>
+                <div class="col-sm-6"><div class="bootstrap-iso">
+                    <div class="container-fluid">
+                     <div class="row">
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                   
+                       <!-- Form code begins -->
+                       <form method="post">
+                         <div class="form-group"> <!-- Date input -->
+                           <label class="control-label" for="date">Date</label>
+                           <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                         </div>
+                         <div class="form-group"> <!-- Submit button -->
+                           <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+                         </div>
+                        </form>
+                        <!-- Form code ends --> 
+                   
+                       </div>
+                     </div>    
+                    </div>
+                   </div></div></div>
+        <span>
+        <button type="button" class="btn btn-primary">add task</button>
+        <button type="button" class="btn btn-danger">remove task</button>
+        </span>
+        </div>
+    </center>
+    <ol id="adding-items">
+      <%
+      for(let i=0;i<todo.length;i++){%>
+          <li>
+              <!--Checkbox to be marked if user -->
+              <input type="checkbox" id="checkbox-id" name="task" value="<%=todo[i].id%>">
+              <div id="list-div">
+                  <%=todo[i].desc%>
+
+                      <br>
+                      <div style="font-size: 12px;margin-top: 5px;"><i class="fas fa-calendar-day"></i>
+                          <%=todo[i].datee%>
+                      </div>
+
+
+              </div>
+              <div id="category-div">
+                  <button style="margin-right:0px;width:100px;height:30px;color: black;background-color: white;font-family: sans-serif;border-style: none;margin-left: 10px;font-weight: bold">
+                      <%=todo[i].category%>
+                  </button>
+              </div>
+          </li>
+          <% } 
+          %>
+
+  </ol>
+
+    </body>
+</html>
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+     //   todayHighlight: true,
+      //  autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
